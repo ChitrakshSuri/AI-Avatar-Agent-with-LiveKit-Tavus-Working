@@ -18,15 +18,18 @@ async def entrypoint(ctx: JobContext):
     # session = AgentSession(
     #     llm=openai.realtime.RealtimeModel(voice="alloy"),
     # )
+    # session = AgentSession(
+    #     llm=openai.LLM(model="gpt-4o-mini"),
+    #     stt=deepgram.STT(model="nova-3"),
+    #     tts=rime.TTS(
+    #         model="mistv2",
+    #         speaker="grove",
+    #         speed_alpha=1.1,
+    #         reduce_latency=True,
+    #     ),
+    # )
     session = AgentSession(
-        llm=openai.LLM(model="gpt-4o-mini"),
-        stt=deepgram.STT(model="nova-3"),
-        tts=rime.TTS(
-            model="mistv2",
-            speaker="grove",
-            speed_alpha=1.1,
-            reduce_latency=True,
-        ),
+        llm=openai.realtime.RealtimeModel(voice="alloy"),
     )
 
     persona_id = os.getenv("TAVUS_PERSONA_ID")
