@@ -15,9 +15,12 @@ async def entrypoint(ctx: JobContext):
     # ✅ Step 0: Connect to room context
     await ctx.connect()
 
-    # session = AgentSession(
-    #     llm=openai.realtime.RealtimeModel(voice="alloy"),
-    # )
+    # using only OpenAI LLM for tts, stt
+    session = AgentSession(
+        llm=openai.realtime.RealtimeModel(voice="alloy"),
+    )
+
+
     # session = AgentSession(
     #     llm=openai.LLM(model="gpt-4o-mini"),
     #     stt=deepgram.STT(model="nova-3"),
@@ -28,9 +31,6 @@ async def entrypoint(ctx: JobContext):
     #         reduce_latency=True,
     #     ),
     # )
-    session = AgentSession(
-        llm=openai.realtime.RealtimeModel(voice="alloy"),
-    )
 
     persona_id = os.getenv("TAVUS_PERSONA_ID")
     replica_id = os.getenv("TAVUS_REPLICA_ID")
